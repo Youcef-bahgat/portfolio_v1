@@ -204,7 +204,7 @@ p {
 
 .btn {
     background: linear-gradient(135deg, var(--primary) 0%, #00d4ff 100%);
-    color: var(--white); /* Change this line from var(--dark) to var(--white) */
+    color: var(--white);
     border: none;
     box-shadow: 0 8px 25px rgba(0, 173, 181, 0.3);
     font-weight: 700;
@@ -656,6 +656,9 @@ p {
     font-family: monospace;
 }
 
+/* ========== TIMELINE SECTION ========== */
+
+/* Timeline Container */
 .timeline {
     position: relative;
     max-width: 1000px;
@@ -663,15 +666,352 @@ p {
     padding: 50px 0;
 }
 
+/* Vertical Timeline Line */
 .timeline::before {
     content: '';
     position: absolute;
+    top: 0;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 4px;
-    height: 100%;
     background: linear-gradient(to bottom, transparent, var(--primary), transparent);
     border-radius: 2px;
+    z-index: 1;
+}
+
+/* Timeline Items */
+.timeline-item {
+    position: relative;
+    display: flex;
+    margin-bottom: 80px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+    z-index: 2;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Date Styling */
+.timeline-date {
+    flex: 0 0 200px;
+    text-align: right;
+    padding-right: 50px;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    position: relative;
+    margin-top: -10px;
+}
+
+/* Timeline Marker (Circle) */
+.timeline-date::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: var(--dark);
+    border: 4px solid var(--primary);
+    border-radius: 50%;
+    top: 0;
+    right: -11px;
+    z-index: 3;
+    box-shadow: 0 0 25px var(--primary);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(0, 173, 181, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(0, 173, 181, 0);
+    }
+}
+
+/* Content Card */
+.timeline-content {
+    flex: 1;
+    background: linear-gradient(135deg, rgba(57, 62, 70, 0.9) 0%, rgba(45, 50, 58, 0.95) 100%);
+    padding: 35px;
+    border-radius: 25px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+}
+
+/* Content Accent Line */
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), #00d4ff);
+    border-radius: 3px 0 0 3px;
+}
+
+/* Hover Effects */
+.timeline-content:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+    border-color: rgba(0, 173, 181, 0.3);
+}
+
+/* Left side items (odd) */
+.timeline-item:nth-child(odd) {
+    justify-content: flex-start;
+}
+
+.timeline-item:nth-child(odd) .timeline-date {
+    order: 1;
+    text-align: right;
+    padding-right: 50px;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    order: 2;
+    margin-left: 0;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+    left: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* Right side items (even) */
+.timeline-item:nth-child(even) {
+    justify-content: flex-end;
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    order: 2;
+    text-align: left;
+    padding-right: 0;
+    padding-left: 50px;
+    justify-content: flex-start;
+}
+
+.timeline-item:nth-child(even) .timeline-date::before {
+    right: auto;
+    left: -11px;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    order: 1;
+    margin-right: 0;
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: auto;
+    right: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Content Typography */
+.timeline-content h3 {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--primary);
+    font-size: 1.7rem;
+}
+
+.timeline-content h3::before {
+    content: '💼';
+    font-size: 1.4rem;
+}
+
+.timeline-content h4 {
+    color: var(--light);
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-content h4::before {
+    content: '🏢';
+    font-size: 1.2rem;
+}
+
+.timeline-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.timeline-content li {
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+    line-height: 1.7;
+    color: var(--light);
+    font-size: 1.05rem;
+}
+
+.timeline-content li::before {
+    content: '▸';
+    color: var(--primary);
+    position: absolute;
+    left: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.timeline-content p {
+    color: var(--light);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========== MOBILE RESPONSIVE TIMELINE ========== */
+@media (max-width: 767px) {
+    .timeline::before {
+        left: 30px !important;
+        right: auto !important;
+        transform: none !important;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        margin-bottom: 60px;
+        padding-left: 60px;
+        justify-content: flex-start !important;
+    }
+    
+    .timeline-date {
+        flex: 0 0 auto;
+        order: 1 !important;
+        width: 100%;
+        text-align: left !important;
+        padding: 0 !important;
+        margin-bottom: 15px;
+        justify-content: flex-start !important;
+        font-size: 1rem;
+        margin-top: 0;
+    }
+    
+    .timeline-date::before {
+        left: -45px !important;
+        right: auto !important;
+        top: 5px;
+        width: 18px;
+        height: 18px;
+        border-width: 3px;
+    }
+    
+    .timeline-content {
+        order: 2 !important;
+        max-width: 100% !important;
+        width: 100%;
+        margin: 0 !important;
+        padding: 25px;
+        border-radius: 20px;
+    }
+    
+    .timeline-content::before {
+        left: 0 !important;
+        right: auto !important;
+        border-radius: 3px 0 0 3px !important;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.4rem;
+    }
+    
+    .timeline-content h4 {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-content li {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
+}
+
+/* ========== TABLET RESPONSIVE TIMELINE ========== */
+@media (min-width: 768px) and (max-width: 991px) {
+    .timeline::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .timeline-item {
+        margin-bottom: 70px;
+    }
+    
+    .timeline-date {
+        flex: 0 0 180px;
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+    
+    .timeline-content {
+        max-width: calc(50% - 50px);
+        padding: 30px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-date::before {
+        right: -11px;
+        left: auto;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-date::before {
+        left: -11px;
+        right: auto;
+    }
+}
+
+/* ========== DESKTOP TIMELINE ========== */
+@media (min-width: 992px) {
+    .timeline::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-date::before {
+        right: -11px;
+        left: auto;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-date::before {
+        left: -11px;
+        right: auto;
+    }
+}
+
+/* Additional Mobile Optimizations */
+@media (max-width: 767px) {
+    .experience-section {
+        padding: 80px 0;
+    }
+    
+    .experience-section::before {
+        font-size: 12rem;
+        top: 5%;
+        left: -20%;
+    }
 }
 
 /* Fix for Contact Section Email Overflow */
@@ -706,26 +1046,10 @@ p {
     hyphens: auto;
 }
 
-@media (min-width: 768px) {
-    .contact-item {
-        padding: 30px;
-    }
-    
-    .contact-item p {
-        font-size: 1.1rem;
-    }
-}
-
 /* Specific email text styling */
 .email-text {
     font-size: 0.95rem !important;
     line-height: 1.4 !important;
-}
-
-@media (min-width: 768px) {
-    .email-text {
-        font-size: 1.1rem !important;
-    }
 }
 
 /* Mobile contact layout */
@@ -746,6 +1070,7 @@ p {
         width: 100%;
     }
 }
+
 /* Projects Section - PROFESSIONAL */
 .projects-section {
     padding: 120px 0;
@@ -1586,6 +1911,31 @@ p {
     .menu-btn {
         display: none;
     }
+    
+    .contact-item {
+        padding: 30px;
+    }
+    
+    .contact-item p {
+        font-size: 1.1rem;
+    }
+    
+    .email-text {
+        font-size: 1.1rem !important;
+    }
+    
+    .timeline-item {
+        display: flex;
+    }
+    
+    .timeline-date {
+        flex: 0 0 200px;
+        padding-right: 40px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-date {
+        padding-left: 40px;
+    }
 }
 
 /* Desktop Styles */
@@ -1750,5 +2100,4 @@ p {
         color: #00ADB5 !important;
         background: none !important;
     }
-
 }
