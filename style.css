@@ -1526,13 +1526,13 @@ p {
     width: 45px;
     height: 45px;
     object-fit: contain;
-    filter: brightness(0) invert(1);
+    filter: none; /* Changed from brightness(0) invert(1) */
     transition: var(--transition);
     pointer-events: none;
 }
 
 .tool-icon:hover img {
-    filter: brightness(1) invert(0);
+    filter: none; /* Changed from brightness(1) invert(0) */
     transform: scale(1.1);
 }
 
@@ -2101,3 +2101,4 @@ p {
         background: none !important;
     }
 }
+
