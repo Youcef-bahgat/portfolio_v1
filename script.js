@@ -325,7 +325,7 @@ function setupProjectLinks() {
                 ripple.style.position = 'absolute';
                 ripple.style.width = '100%';
                 ripple.style.height = '100%';
-                ripple.style.background = 'radial-gradient(circle, rgba(0,173,181,0.3) 0%, transparent 70%)';
+                ripple.style.background = 'radial-gradient(circle, rgba(59, 130, 246,0.3) 0%, transparent 70%)';
                 ripple.style.top = '0';
                 ripple.style.left = '0';
                 ripple.style.borderRadius = '25px';
@@ -435,6 +435,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fix social links
     fixSocialLinks();
     
+    // Initialize Particles.js background
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#3b82f6" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": false, "anim": { "enable": false } },
+                "size": { "value": 3, "random": true, "anim": { "enable": false } },
+                "line_linked": { "enable": true, "distance": 180, "color": "#3b82f6", "opacity": 0.6, "width": 1 },
+                "move": { "enable": true, "speed": 4, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false } }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+            },
+            "retina_detect": true
+        });
+    }
+
+    // Setup filtering logic for projects
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filterValue = btn.getAttribute('data-filter');
+            
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filterValue === 'all' || category === filterValue) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+
     // Setup interactions
     setupWhatsAppContact();
     setupProjectLinks();
@@ -496,7 +547,7 @@ console.log(`
 %c✨ Professional Portfolio v2.0
 %c📱 Fully responsive | 🎨 Professional design | ⚡ High performance
 `, 
-'color: #00ADB5; font-size: 18px; font-weight: bold;',
+'color: #3b82f6; font-size: 18px; font-weight: bold;',
 'color: #00d4ff; font-size: 14px;',
 'color: #EEEEEE; font-size: 12px; font-style: italic;'
 );

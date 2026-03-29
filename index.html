@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="#home" class="logo">Portfolio</a>
+            <a href="#home" class="logo">Youssef Bahgat</a>
             <button class="menu-btn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
@@ -30,7 +31,8 @@
 
     <!-- Home Section -->
     <section id="home" class="home-section">
-        <div class="container">
+        <div id="particles-js" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0;"></div>
+        <div class="container" style="z-index: 2; position: relative;">
             <div class="home-content">
                 <div class="home-text">
                     <h1>
@@ -46,7 +48,7 @@
                     </div>
                 </div>
                 <div class="home-image">
-                    <img src="assets/images/profile.jfif" alt="Youssef Bahgat - AI Engineer & Data Scientist">
+                    <img src="D:\AI\portfolio_new\assets\images\profile.jpg" alt="Youssef Bahgat - AI Engineer & Data Scientist">
                 </div>
             </div>
         </div>
@@ -120,9 +122,15 @@
     <section id="projects" class="projects-section">
         <div class="container">
             <h2 class="section-title">Projects</h2>
+            <div class="filter-menu">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="Data Science">Data Science</button>
+                <button class="filter-btn" data-filter="Data Analysis">Data Analysis</button>
+                <button class="filter-btn" data-filter="AI">AI</button>
+            </div>
             <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="project-card" data-github="https://github.com/Youcef-bahgat/amazon-sales-analysis">
+                <div class="project-card" data-category="Data Analysis" data-github="https://github.com/Youcef-bahgat/amazon-sales-analysis">
                     <div class="project-image">
                         <img src="assets/images/projects/Amazon Sales Analysis.png" alt="Amazon Sales Analysis">
                     </div>
@@ -132,8 +140,6 @@
                         <div class="project-tools">
                             <span>Python</span>
                             <span>Excel</span>
-                            <span>Pandas</span>
-                            <span>Matplotlib</span>
                             <span>Power BI</span>
                         </div>
                         <div class="project-link">
@@ -143,7 +149,7 @@
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card" data-github="https://github.com/Youcef-bahgat/Sales-Analysis-Using-Tableau">
+                <div class="project-card" data-category="Data Analysis" data-github="https://github.com/Youcef-bahgat/sales-analysis-tableau">
                     <div class="project-image">
                         <img src="assets/images/projects/sales Analysis using tableau.jfif" alt="Sales Analysis Using Tableau">
                     </div>
@@ -152,9 +158,7 @@
                         <p>Based on Excel sheet data, I performed analysis using Tableau to reach useful insights to help and improve the performance of the brand.</p>
                         <div class="project-tools">
                             <span>Tableau</span>
-                            <span>Python</span>
                             <span>Excel</span>
-                            <span>Pandas</span>
                         </div>
                         <div class="project-link">
                             <i class="fab fa-github"></i> View on GitHub
@@ -163,7 +167,7 @@
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-card" data-github="https://github.com/Youcef-bahgat/Gold_Currency_analysis">
+                <div class="project-card" data-category="Data Analysis" data-github="https://github.com/Youcef-bahgat/gold-currency-analysis">
                     <div class="project-image">
                         <img src="assets/images/projects/Gold & Currency Analysis.png" alt="Gold & Currency Analysis">
                     </div>
@@ -187,7 +191,7 @@
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-card" data-github="https://www.kaggle.com/code/youcefbahgat/sentiment-class">
+                <div class="project-card" data-category="AI" data-github="https://github.com/Youcef-bahgat/facial-expression-analysis">
                     <div class="project-image">
                         <img src="assets/images/projects/Facial Expression Sentiment Analysis.png" alt="Facial Expression Sentiment Analysis">
                     </div>
@@ -196,19 +200,17 @@
                         <p>Deep learning model to predict human emotions based on facial images, classifying sentiments like happy, sad, angry, and neutral.</p>
                         <div class="project-tools">
                             <span>Python</span>
-                            <span>scrapping</span>
-                            <span>Matplotlib</span>
                             <span>Deep Learning</span>
                             <span>TensorFlow</span>
                         </div>
                         <div class="project-link">
-                            <i class="fab fa-kaggle"></i> View on Kaggle
+                            <i class="fab fa-github"></i> View on GitHub
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-card" data-github="https://github.com/Youcef-bahgat/Save-My-Driver">
+                <div class="project-card" data-category="AI" data-github="https://github.com/Youcef-bahgat/ai-driver-monitoring">
                     <div class="project-image">
                         <img src="assets/images/projects/AI Driver Monitoring System.jpg" alt="AI Driver Monitoring System">
                     </div>
@@ -227,7 +229,7 @@
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-card" data-github="https://github.com/Youcef-bahgat/Depi_Customer-Data-Management-and-Analysis-">
+                <div class="project-card" data-category="Data Analysis" data-github="https://github.com/Youcef-bahgat/customer-data-analytics">
                     <div class="project-image">
                         <img src="assets/images/projects/customer-analytics.png" alt="Customer Data Management">
                     </div>
@@ -243,6 +245,125 @@
                         <div class="project-link">
                             <i class="fab fa-github"></i> View on GitHub
                         </div>
+                    </div>
+                </div>
+
+                <!-- Data Science Salaries -->
+                <div class="project-card" data-category="Data Science" data-github="https://github.com/Youcef-bahgat/Data-Science-Salaries">
+                    <div class="project-image">
+                        <img src="assets/images/projects/Data Science Salaries.jpg" alt="Data Science Salaries" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Data Science Salaries</h3>
+                        <p>Comprehensive exploratory data analysis on Data Science salaries globally, using dynamic visualization techniques with Python.</p>
+                        <div class="project-tools">
+                            <span>Python</span>
+                            <span>Pandas</span>
+                            <span>Seaborn</span>
+                        </div>
+                        <div class="project-link"><i class="fab fa-github"></i> View on GitHub</div>
+                    </div>
+                </div>
+
+                <!-- USA Housing Price Prediction -->
+                <div class="project-card" data-category="Data Science" data-github="https://github.com/Youcef-bahgat/USA_Housing_Price_Predection">
+                    <div class="project-image">
+                        <img src="assets/images/projects/USA Housing.jpg" alt="USA Housing" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="project-info">
+                        <h3>USA Housing Price Prediction</h3>
+                        <p>Machine Learning model to predict housing prices in the USA using Multiple Linear Regression based on various property features.</p>
+                        <div class="project-tools">
+                            <span>Python</span>
+                            <span>Scikit-learn</span>
+                            <span>Regression</span>
+                        </div>
+                        <div class="project-link"><i class="fab fa-github"></i> View on GitHub</div>
+                    </div>
+                </div>
+
+                <!-- Car Price Prediction -->
+                <div class="project-card" data-category="Data Science" data-github="https://github.com/Youcef-bahgat/Car-Price-Prediction">
+                    <div class="project-image">
+                        <img src="assets/images/projects/Car Price.jpg" alt="Car Price Prediction" onerror="this.src='https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Car Price Prediction</h3>
+                        <p>Predictive model built to estimate the market value of used cars employing advanced machine learning regression techniques.</p>
+                        <div class="project-tools">
+                            <span>Python</span>
+                            <span>Machine Learning</span>
+                            <span>EDA</span>
+                        </div>
+                        <div class="project-link"><i class="fab fa-github"></i> View on GitHub</div>
+                    </div>
+                </div>
+
+                <!-- Object Detection Using YOLO -->
+                <div class="project-card" data-category="AI" data-github="https://github.com/Youcef-bahgat/Object-Detection-Using-Yolo">
+                    <div class="project-image">
+                        <img src="D:\AI\portfolio_new\assets\images\projects\object_detec.jpeg" alt="Object Detection YOLO" onerror="this.src='https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Object Detection Using YOLO</h3>
+                        <p>Implemented real-time object detection using the You Only Look Once (YOLO) framework, delivering high-speed and accurate visual recognition.</p>
+                        <div class="project-tools">
+                            <span>Computer Vision</span>
+                            <span>YOLO</span>
+                            <span>Python</span>
+                        </div>
+                        <div class="project-link"><i class="fab fa-github"></i> View on GitHub</div>
+                    </div>
+                </div>
+
+                <!-- Sign Language Detection -->
+                <div class="project-card" data-category="AI" data-github="https://github.com/Youcef-bahgat/Sign-Language-Detection">
+                    <div class="project-image">
+                        <img src="D:\AI\portfolio_new\assets\images\projects\sign_lang.jpg" alt="Sign Language Detection" onerror="this.src='https://images.unsplash.com/photo-1528699633788-424224dc89b5?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Sign Language Detection</h3>
+                        <p>Developed an AI system that interprets sign language gestures in video streams to facilitate accessibility using deep learning.</p>
+                        <div class="project-tools">
+                            <span>Deep Learning</span>
+                            <span>OpenCV</span>
+                            <span>CNN</span>
+                        </div>
+                        <div class="project-link"><i class="fab fa-github"></i> View on GitHub</div>
+                    </div>
+                </div>
+
+                <!-- Cat vs Dog CNN -->
+                <div class="project-card" data-category="AI" data-github="https://github.com/Youcef-bahgat/Cat-Vs-Dog-using-CNN">
+                    <div class="project-image">
+                        <img src="assets/images/projects/Cat vs Dog.jpg" alt="Cat vs Dog CNN" onerror="this.src='https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Cat vs Dog Classification (CNN)</h3>
+                        <p>Custom Convolutional Neural Network (CNN) engineered to accurately classify images of cats and dogs with high precision.</p>
+                        <div class="project-tools">
+                            <span>TensorFlow</span>
+                            <span>Keras</span>
+                            <span>Computer Vision</span>
+                        </div>
+                        <div class="project-link"><i class="fab fa-github"></i> View on GitHub</div>
+                    </div>
+                </div>
+
+                <!-- Helmet Detection YOLOv8 -->
+                <div class="project-card" data-category="AI" data-github="https://github.com/Youcef-bahgat/helmet-detection-yolov8">
+                    <div class="project-image">
+                        <img src="D:\AI\portfolio_new\assets\images\projects\helmets.jpg" alt="Helmet Detection" onerror="this.src='https://images.unsplash.com/photo-1588636284695-1f9e23eb5211?auto=format&fit=crop&w=500&q=80'">
+                    </div>
+                    <div class="project-info">
+                        <h3>Helmet Detection YOLOv8</h3>
+                        <p>Safety compliance system utilizing state-of-the-art YOLOv8 architecture to automatically detect whether individuals are wearing safety helmets.</p>
+                        <div class="project-tools">
+                            <span>PyTorch</span>
+                            <span>YOLOv8</span>
+                            <span>AI Safety</span>
+                        </div>
+                        <div class="project-link"><i class="fab fa-github"></i> View on GitHub</div>
                     </div>
                 </div>
             </div>
@@ -330,7 +451,7 @@
                     </div>
                 </div>
                 <div class="contact-image">
-                    <img src="assets/images/profile-contact.jpg" alt="Contact Photo">
+                    <img src="D:\AI\portfolio_new\assets\images\profile-contact.jfif" alt="Contact Photo">
                 </div>
             </div>
         </div>
@@ -356,5 +477,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
